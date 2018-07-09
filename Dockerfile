@@ -1,11 +1,9 @@
-FROM debian
+FROM debian:stretch
 
-RUN apt update \
-	&& apt install -y \
-	nano \
-	nginx-full \
-	mariadb-server \
-	php7.0 \
+RUN apt update && apt install -y \
+		nginx-full \
+		mariadb-server \
+		php7.0 \
     php7.0-fpm \
     php7.0-mysql \
     php7.0-curl \
@@ -20,16 +18,19 @@ RUN apt update \
     php7.0-geoip \
     php7.0-mbstring \
     php7.0-xml \
-    php7.0-zip 
+    php7.0-zip
 
-RUN service php7.0-fpm start
+WORKDIR /app
+RUN mkdir site
 
 EXPOSE 80
-EXPOSE 443
 
 RUN rm -rf /tmp/* \
 	/var/lib/apt/lists/*
 
-COPY ./ /
+COPY ./app/ /app/
+COPY ./default /etc/nginx/sites-available/default
 
-CMD ["bash", "/entryscript.sh"]
+VOLUME /app/site
+
+CMD ["/app/start.sh"]
