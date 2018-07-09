@@ -27,6 +27,9 @@ RUN service php7.0-fpm start
 EXPOSE 80
 EXPOSE 443
 
+RUN rm -rf /tmp/* \
+	/var/lib/apt/lists/*
+
 COPY ./ /
 
 CMD ["bash", "/entryscript.sh"]
