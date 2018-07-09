@@ -29,6 +29,7 @@ RUN rm -rf /tmp/* \
 	/var/lib/apt/lists/*
 
 COPY ./app/ /app/
+RUN chmod 770 /app/start.sh
 COPY ./default /etc/nginx/sites-available/default
 
 VOLUME /app/site

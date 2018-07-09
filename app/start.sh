@@ -1,13 +1,13 @@
 #!/bin/bash
 
-if [ ! -s /scripts/firststart ]; then
+if [ ! -s /firststart ]; then
   echo [INFO] INIT MYSQL
-  touch /scripts/firststart
+  touch /firststart
   service mysql start
   mysql < /app/initdb.sql
   if [ -s /app/site/init_db.sql ]; then
     echo [INFO] Running init_db.sql
-    mysql -u root -p P@ssw0rd < /app/site/init_db.sql
+    mysql -u root -pP@ssw0rd < /app/site/init_db.sql
   fi
 else
   service mysql start
