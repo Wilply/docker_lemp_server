@@ -23,6 +23,8 @@ RUN apt update \
     php7.0-zip 
 
 RUN service php7.0-fpm start
+RUN service mysql start
+RUN service nginx start
 
 EXPOSE 80
 EXPOSE 443
