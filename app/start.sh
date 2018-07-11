@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [ ! -s /firststart ]; then
+if [ ! -e /firststart ]; then
   echo [INFO] INIT MYSQL
   touch /firststart
-  service mysql start
+  find /var/lib/mysql -type f -exec touch {} \; && service mysql start
   mysql < /app/initdb.sql
   if [ -s /app/site/init_db.sql ]; then
     echo [INFO] Running init_db.sql

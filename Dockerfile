@@ -1,4 +1,7 @@
 FROM debian:stretch
+MAINTAINER Wilply
+
+ARG DEBIAN_FRONTEND="noninteractive"
 
 RUN apt update && apt install -y \
 		nginx-full \
